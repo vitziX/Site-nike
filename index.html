@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page Promoção Nike</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fff;
+    }
+
+    /* Header e logo */
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #111;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      gap: 2rem;
+    }
+
+    .logo img {
+      max-width: 120px;
+      height: auto;
+    }
+
+    /* Menu de navegação */
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover {
+      color: #FF7F00; /* Laranja da Nike */
+    }
+
+    /* Barra de pesquisa */
+    .search-container {
+      display: flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      padding: 0.5rem 1rem;
+      width: 250px;
+      transition: width 0.3s ease;
+    }
+
+    .search-container:hover {
+      width: 300px;
+    }
+
+    .search-container input {
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      padding: 0.5rem;
+      width: 100%;
+      border-radius: 25px;
+      transition: background-color 0.3s ease;
+    }
+
+    .search-container input::placeholder {
+      color: #fff;
+      opacity: 0.8;
+    }
+
+    .search-container input:focus {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .search-container button {
+      background-color: #FF7F00; /* Laranja da Nike */
+      border: none;
+      border-radius: 50%;
+      padding: 0.5rem;
+      cursor: pointer;
+      margin-left: 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .search-container button:hover {
+      background-color: #e66a00;
+    }
+
+    /* Ícone de Carrinho */
+    .cart {
+      position: relative;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+    }
+
+    .cart::after {
+      content: "3";
+      position: absolute;
+      top: -5px;
+      right: -8px;
+      background-color: #FF7F00;
+      color: white;
+      font-size: 0.9rem;
+      padding: 0.3rem;
+      border-radius: 50%;
+    }
+
+    /* Banner principal */
+    .banner {
+      position: relative;
+      height: 60vh;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .banner video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .banner .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .banner-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      color: #fff;
+      text-align: center;
+    }
+
+    .banner-content h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+      letter-spacing: 5px;
+      margin-bottom: 10px;
+    }
+
+    .banner-content p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #fff;
+    }
+
+    /* Estilo do título na seção do formulário */
+    .form-section {
+      padding: 3rem 2rem;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+
+    .form-section h2 {
+      margin-bottom: 2rem;
+      font-size: 3rem;
+      font-weight: bold;
+      color: #111;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: transparent;
+      text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .promo-form {
+      max-width: 400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border: 1px solid #ddd;
+    }
+
+    .promo-form label {
+      text-align: left;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .promo-form input {
+      margin-bottom: 1rem;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .promo-form button {
+      padding: 0.7rem;
+      border: none;
+      background: #111;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .promo-form button:hover {
+      background: #333;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .logo {
+        max-width: 100px;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .search-container {
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .cart {
+        font-size: 1.2rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Menu de navegação -->
+    <nav>
+      <a href="#">Black Friday</a>
+      <a href="#">Lançamentos</a>
+      <a href="#">Ofertas</a>
+      <a href="#">Masculino</a>
+      <a href="#">Feminino</a>
+      <a href="#">Infantil</a>
+      <a href="#">SNKRS</a>
+    </nav>
+
+    <!-- Barra de pesquisa -->
+    <div class="search-container">
+      <input type="text" placeholder="Pesquisar produtos...">
+      <button>🔍</button>
+    </div>
+
+    <!-- Carrinho -->
+    <div class="cart">
+      🛒
+    </div>
+  </header>
+
+  <div class="banner">
+    <video autoplay loop muted playsinline>
+      <source src="https://imgnike-a.akamaihd.net/videos/Banner-Home-Black-Friday-Fase-3-Desk.mp4" type="video/mp4">
+      Seu navegador não suporta o formato de vídeo.
+    </video>
+    <div class="overlay"></div>
+    <div class="banner-content">
+      <h1>Ganhe Seu Cupom Promocional!</h1>
+      <p>Descontos incríveis esperando por você. Inscreva-se agora!</p>
+    </div>
+  </div>
+
+  <!-- Formulário -->
+  <section class="form-section">
+    <h2>Solicite seu cupom e ganhe descontos exclusivos!</h2>
+    <form class="promo-form">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" name="name" placeholder="Seu nome" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+
+      <button type="submit">Receber Cupom</button>
+    </form>
+  </section>
+</body>
+</html>
